@@ -28,12 +28,14 @@ static void   run_exit_callbacks( void)
 {
    void (*f)( void);
 
-   while( vars.n)
+loop:
+   mulle_thread_mutex_lock( &vars.lock);
+   f = vars.n ? vars.f[ --vars.n] : 0;
+   mulle_thread_mutex_unlock( &vars.lock);
+   if( f)
    {
-      mulle_thread_mutex_lock( &vars.lock);
-      f = vars.f[ --vars.n];
-      mulle_thread_mutex_unlock( &vars.lock);
       (*f)();
+      goto loop;
    }
 }
 
