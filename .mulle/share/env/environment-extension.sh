@@ -7,7 +7,7 @@ export MULLE_MATCH_FILENAMES="config:*.h:*.inc:*.c:CMakeLists.txt:*.cmake"
 
 
 # Used by `mulle-match find` to locate files
-export MULLE_MATCH_PATH="${PROJECT_SOURCE_DIR}:CMakeLists.txt:cmake"
+export MULLE_MATCH_PATH=".mulle/etc/sourcetree/config:${PROJECT_SOURCE_DIR}:CMakeLists.txt:cmake"
 
 
 # Used by `mulle-match find` to ignore boring subdirectories like .git
