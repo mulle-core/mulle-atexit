@@ -40,12 +40,6 @@ extern uint32_t   mulle_atexit_get_version( void);
 
 int   mulle_atexit( void (*f)( void));
 
-//
-// following code, that actually used atexit, doesn't need to change
-// as long as it gets compiled
-//
-#define atexit( f)   mulle_atexit( f)
-
 #else
 
 static inline int   mulle_atexit( void (*f)( void))
