@@ -1,7 +1,16 @@
 # mulle-atexit
 
-This is a little bit of cross-platform glue, to work arounds bugs in
-deficient `atexit` implementations like glibc.
+👼 Compatibility library to fix atexit
+
+See [Challenges of shared library environments, Part 2](https://www.mulle-kybernetik.com/weblog/2019/atexit_is_broken.html), why and when this is necessary to use.
+
+This reimplements `atexit` as it should be, just under a different name.
+
+
+You must **statically** link this library with your executable. Ensure that
+global symbols are exported and that the whole library is linked to the
+executable and not optimized away by the linker.
+
 
 
 ## Build

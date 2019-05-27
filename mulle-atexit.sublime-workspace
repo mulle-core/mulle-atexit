@@ -517,27 +517,6 @@
 			]
 		]
 	},
-	"buffers":
-	[
-		{
-			"file": "src/mulle-atexit.c",
-			"settings":
-			{
-				"buffer_size": 999,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "test/10_atexit/atexit.c",
-			"settings":
-			{
-				"buffer_size": 236,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
-	],
 	"build_system": "",
 	"build_system_choices":
 	[
@@ -606,13 +585,11 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/home/src/srcO/mulle-concurrent/mulle-atexit",
-		"/home/src/srcO/mulle-concurrent/mulle-atexit/src"
-	],
 	"file_history":
 	[
+		"/home/src/srcO/mulle-core/mulle-atexit/README.md",
+		"/home/src/srcO/mulle-core/mulle-atexit/test/10_atexit/atexit.c",
+		"/home/src/srcO/mulle-core/mulle-atexit/src/mulle-atexit.c",
 		"/home/src/srcS/mulle-make/src/plugins/cmake.sh",
 		"/Volumes/Source/srcS/mulle-fetch/src/mulle-fetch-git.sh",
 		"/Volumes/Source/srcS/mulle-test/src/mulle-test-cmake.sh",
@@ -737,10 +714,7 @@
 		"/home/src/srcO/mulle-c/mulle-c-developer/src/mulle-c/c-cmake/project/all/cmake/share/StartupC.cmake",
 		"/home/src/srcS/mulle-sde/src/mulle-sde-init.sh",
 		"/home/src/srcO/mulle-c/mulle-c-developer/src/mulle-c/c-developer/inherit",
-		"/home/src/srcS/mulle-sde-developer/src/mulle-sde/c-developer/inherit",
-		"/home/src/srcO/mulle-objc/mulle-objc-developer/src/mulle-objc/objc-demo/demo/executable/PROJECT_SOURCE_DIR/main.PROJECT_EXTENSION",
-		"/home/src/srcO/MulleFoundation/mulle-foundation-developer/src/mulle-foundation/objc-developer/inherit",
-		"/home/src/srcO/mulle-objc/mulle-objc-developer/src/mulle-objc/objc-developer/inherit"
+		"/home/src/srcS/mulle-sde-developer/src/mulle-sde/c-developer/inherit"
 	],
 	"find":
 	{
@@ -772,100 +746,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 0,
-					"file": "src/mulle-atexit.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 999,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								590,
-								590
-							]
-						],
-						"settings":
-						{
-							"SL.55.region_keys":
-							[
-								"SL.clang.Highlights.|b4610bf9c6b827e99698b1e9db0313043fbd8d529b3a532e719c49580064a683|region.yellowish markup.warning.sublime_linter|32",
-								"SL.clang.Highlights.|e4e46570de88d06a1c5f53d8a9fb67bb426a2784106239cc4f88d1d8b7db244e|region.yellowish markup.warning.sublime_linter|32",
-								"SL.clang.Highlights.|11dffeccbce26592198294793edc96ac425df02493e966c8ffd518ca408e123d|region.redish markup.error.sublime_linter|32",
-								"SL.clang.Gutter.|region.redish markup.error.sublime_linter|dot",
-								"sublime_linter.protected_regions",
-								"SL.clang.Highlights.|a3220ed06cdf11ae67c6f500284c0eed993ab36033aff47df422eb4a100b1883|region.yellowish markup.warning.sublime_linter|32",
-								"SL.clang.Highlights.|45c397c8f9c08ca0eec73c0183c5ba02cf09e5c74e674bd5de9a321507547819|region.yellowish markup.warning.sublime_linter|32",
-								"SL.clang.Highlights.|23a7950ff72365190aa0b45dcc5c3d09d351fca5521d07610d6f53fdb4f16c6f|region.yellowish markup.warning.sublime_linter|32",
-								"SL.clang.Highlights.|fb815cc8d04ff51677ecdb96404fb30d1b4efd87612bbb404909c4ebbac4675d|region.redish markup.error.sublime_linter|32",
-								"SL.clang.Highlights.|e9ff168f055829b722022d4c77c9039bf5a69b90ad4852403fd9f51d530d6968|region.yellowish markup.warning.sublime_linter|32",
-								"SL.clang.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
-								"SL.clang.Highlights.|b2032926871a321bd5dbdc8685f310f81d8426a752436f7398d9ed8bff56b425|region.redish markup.error.sublime_linter|32"
-							],
-							"git_gutter_is_enabled": false,
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"tabs_extra_last_activated": 1558299001.15,
-							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 990.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "test/10_atexit/atexit.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 236,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								16,
-								16
-							]
-						],
-						"settings":
-						{
-							"SL.56.region_keys":
-							[
-								"SL.clang.Highlights.|7abecea34f9a7063558233fb46b43456d425b394c183749ec326acc45f1afcef|region.redish markup.error.sublime_linter|32",
-								"SL.clang.Gutter.|region.redish markup.error.sublime_linter|dot",
-								"sublime_linter.protected_regions"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"tabs_extra_last_activated": 1558299263.0,
-							"tabs_extra_last_activated_sheet_index": 1,
-							"tabs_extra_spawned": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 39.0
@@ -901,12 +781,15 @@
 	{
 		"height": 0.0
 	},
+	"output.exec":
+	{
+		"height": 192.0
+	},
 	"output.find_results":
 	{
 		"height": 124.0
 	},
 	"pinned_build_system": "",
-	"project": "mulle-atexit.sublime-project",
 	"replace":
 	{
 		"height": 74.0
@@ -1145,7 +1028,11 @@
 		[
 			[
 				"",
-				"/home/src/srcS/mulle-sde/mulle-sde.sublime-project"
+				"/home/src/srcO/mulle-core/mulle-atinit/mulle-atinit.sublime-project"
+			],
+			[
+				"atini",
+				"/home/src/srcO/mulle-core/mulle-atinit/mulle-atinit.sublime-project"
 			],
 			[
 				"objc",
@@ -1191,7 +1078,6 @@
 		],
 		"width": 584.0
 	},
-	"selected_group": 0,
 	"settings":
 	{
 	},
