@@ -1,1 +1,1 @@
-mulle-thread;tar;no-all-load,no-import;569981b9-1804-442a-b548-686008db5d26;${MULLE_THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${NODE_BRANCH}.tar.gz};${_BRANCH:-latest};;;
+mulle-thread;tar;no-all-load,no-import;569981b9-1804-442a-b548-686008db5d26;${MULLE_THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_BRANCH}.tar.gz};${MULLE_THREAD_BRANCH:-latest};;;
