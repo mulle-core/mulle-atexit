@@ -3,6 +3,7 @@
 #include "mulle-atexit.h"
 
 
+
 int   __MULLE_ATEXIT_ranlib__;
 
 
@@ -11,6 +12,7 @@ uint32_t   mulle_atexit_get_version( void)
    return( MULLE_ATEXIT_VERSION);
 }
 
+#ifdef __linux
 
 static struct
 {
@@ -64,3 +66,5 @@ int   mulle_atexit( void (*f)( void))
 
    return( rval);
 }
+
+#endif
