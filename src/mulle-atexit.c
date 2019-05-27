@@ -3,7 +3,6 @@
 #include "mulle-atexit.h"
 
 
-
 int   __MULLE_ATEXIT_ranlib__;
 
 

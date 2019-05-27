@@ -1,3 +1,7 @@
+### 0.0.4
+
+* make it a mulle-c/developer project for sake of trusty/linux
+
 ### 0.0.3
 
 * fix compile problems on macOS

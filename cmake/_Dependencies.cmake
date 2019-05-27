@@ -5,7 +5,7 @@ if( MULLE_TRACE_INCLUDE)
    message( STATUS "# Include \"${CMAKE_CURRENT_LIST_FILE}\"" )
 endif()
 
-# sourcetree: MULLE_THREAD;no-all-load,no-import;
+# sourcetree: MULLE_THREAD;no-all-load,no-import,no-singlephase;
 if( NOT MULLE_THREAD_LIBRARY)
    find_library( MULLE_THREAD_LIBRARY NAMES ${CMAKE_STATIC_LIBRARY_PREFIX}mulle-thread${CMAKE_STATIC_LIBRARY_SUFFIX} mulle-thread NO_CMAKE_SYSTEM_PATH)
    message( STATUS "MULLE_THREAD_LIBRARY is ${MULLE_THREAD_LIBRARY}")

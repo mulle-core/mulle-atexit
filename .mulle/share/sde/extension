@@ -1,8 +1,10 @@
-mulle-sde/c-developer;meta
+mulle-c/c-developer;meta
+mulle-c/c;runtime
 mulle-sde/c;runtime
 mulle-sde/sde;extra
+mulle-c/c-cmake;buildtool
 mulle-sde/c-cmake;buildtool
 mulle-sde/cmake;buildtool
+mulle-c/travis;extra
 mulle-sde/c-demo;extra
-mulle-sde/sublime-text;extra
-mulle-sde/mulle-project;extra
+mulle-c/c-demo;extra

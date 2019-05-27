@@ -1,15 +1,13 @@
 #include "include.h"
 
 #include <stdint.h>
-#include <stdlib.h>
-
 
 /*
- *  (c) 2019 nat
+ *  (c) 2019 nat ORGANIZATION
  *
  *  version:  major, minor, patch
  */
-#define MULLE_ATEXIT_VERSION  ((0 << 20) | (0 << 8) | 3)
+#define MULLE_ATEXIT_VERSION  ((0 << 20) | (0 << 8) | 4)
 
 
 static inline unsigned int   mulle_atexit_get_version_major( void)
@@ -32,7 +30,6 @@ static inline unsigned int   mulle_atexit_get_version_patch( void)
 
 extern uint32_t   mulle_atexit_get_version( void);
 
-
 // linux specifically glibc 2.29 is broken, so we need mulle_atexit.
 // other OS are assumed to be OK, so we just use atexit
 
@@ -48,4 +45,3 @@ static inline int   mulle_atexit( void (*f)( void))
 }
 
 #endif
-
