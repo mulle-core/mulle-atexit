@@ -11,7 +11,7 @@ uint32_t   mulle_atexit_get_version( void)
    return( MULLE_ATEXIT_VERSION);
 }
 
-#ifdef __linux
+#if 0
 
 static struct
 {
