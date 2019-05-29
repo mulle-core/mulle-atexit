@@ -33,7 +33,7 @@ extern uint32_t   mulle_atexit_get_version( void);
 // linux specifically glibc 2.29 is broken, so we need mulle_atexit.
 // other OS are assumed to be OK, so we just use atexit
 
-#ifdef __linux
+#if 0
 
 int   mulle_atexit( void (*f)( void));
 
