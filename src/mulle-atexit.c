@@ -2,8 +2,16 @@
 
 #include "mulle-atexit.h"
 
+#include <assert.h>
 
-// #define USE_ATEXIT
+
+//
+// on some OS atexit just works correctly
+//
+#if defined( _WIN32)
+# define USE_ATEXIT
+#endif
+
 
 int   __MULLE_ATEXIT_ranlib__;
 
@@ -21,16 +29,12 @@ static struct
    unsigned int           n;
    unsigned int           size;
    void                   (**fs)( void);
-} vars =
-{
-   MULLE_THREAD_ONCE_INIT
-};
+} vars;
 
 
 static void   run_exit_callbacks( void)
 {
    void   (*f)( void);
-   void   *userinfo;
 
    mulle_thread_mutex_lock( &vars.lock);
 loop:
@@ -61,6 +65,7 @@ loop:
 
 static void   init( void)
 {
+   assert( MULLE_THREAD_ONCE_INIT == 0);
    mulle_thread_mutex_init( &vars.lock);
 #ifdef USE_ATEXIT
    atexit( run_exit_callbacks);
@@ -120,8 +125,8 @@ int   mulle_atexit( void (*f)( void))
 // (this could run in a shared lib too), but because of the availability of
 // the `mulle_atinit` symbol
 //
-__attribute__(( constructor))
-static void   load( void)
+MULLE_C_CONSTRUCTOR( load_atexit)
+static void   load_atexit( void)
 {
    _mulle_atexit( 0); // protect from evil linker optimization and do "once"
 }
@@ -129,8 +134,8 @@ static void   load( void)
 
 #ifndef USE_ATEXIT
 
-__attribute__(( destructor))
-static void   unload( void)
+MULLE_C_DESTRUCTOR( unload_atexit)
+static void   unload_atexit( void)
 {
    _mulle_atexit( 0); // protect from evil linker optimization and do "once"
    run_exit_callbacks();
