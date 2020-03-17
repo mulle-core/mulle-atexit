@@ -1,3 +1,4 @@
+# Fill it with mulle-env envirionment --scope  set <key> <value>
 #
 # mulle-atexit nodetype: ${MULLE_ATEXIT_NODETYPE:-tar}
 #
