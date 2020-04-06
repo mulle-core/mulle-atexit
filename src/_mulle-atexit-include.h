@@ -15,6 +15,7 @@
 // How to tweak the following mulle-thread #include
 //    remove:          `mulle-sourcetree mark mulle-thread no-header`
 //    rename:          `mulle-sourcetree mark mulle-thread set include whatever.h`
+//    toggle #import:  `mulle-sourcetree mark mulle-thread [no-]import`
 //    toggle public:   `mulle-sourcetree mark mulle-thread [no-]public`
 //    toggle optional: `mulle-sourcetree mark mulle-thread [no-]require`
 //    remove for os:   `mulle-sourcetree mark mulle-thread no-os-<osname>`
