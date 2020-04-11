@@ -11,22 +11,50 @@ You must **statically** link this library with your executable. Ensure that
 global symbols are exported and that the whole library is linked to the
 executable and not optimized away by the linker.
 
+## Add 
 
-
-## Build
-
-This is a [mulle-sde](https://mulle-sde.github.io/) project.
-
-It has it's own virtual environment, that will be automatically setup for you
-once you enter it with:
+Use [mulle-sde](//github.com/mulle-sde) to add mulle-atexit to your project:
 
 ```
-mulle-sde mulle-atexit
+mulle-sde dependency add --c \
+                         --github mulle-core \
+                         --marks no-singlephase \
+                         mulle-atexit
 ```
 
-Now you can let **mulle-sde** fetch the required dependencies and build the
-project for you:
+
+## Install
+
+### mulle-sde
+
+Use [mulle-sde](//github.com/mulle-sde) to build and install mulle-atexit and all dependencies:
 
 ```
-mulle-sde craft
+mulle-sde install --prefix /usr/local \
+   https://github.com/mulle-core/mulle-atexit/archive/latest.tar.gz
 ```
+
+### Manual Installation
+
+
+Install the requirements:
+
+Requirements                                               | Description
+-----------------------------------------------------------|-----------------------
+[mulle-thread](//github.com/mulle-concurrent/mulle-thread) | Threads and atomics
+
+
+Install into `/usr/local`:
+
+```
+mkdir build 2> /dev/null
+(
+   cd build ;
+   cmake -DCMAKE_INSTALL_PREFIX=/usr/local \
+         -DCMAKE_PREFIX_PATH=/usr/local \
+         -DCMAKE_BUILD_TYPE=Release .. ;
+   make install
+)
+```
+
+
