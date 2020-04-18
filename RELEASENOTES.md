@@ -1,3 +1,7 @@
+### 0.0.7
+
+* new mulle-sde project structure
+
 ### 0.0.6
 
 * Various small improvements
