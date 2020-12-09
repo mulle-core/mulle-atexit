@@ -1,3 +1,7 @@
+### 0.0.8
+
+* mulle-sde upgrade and travis -> github migration
+
 ### 0.0.7
 
 * new mulle-sde project structure
