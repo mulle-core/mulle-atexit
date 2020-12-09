@@ -8,7 +8,7 @@ endif()
 
 #
 # Generated from sourcetree: mulle-thread;no-all-load,no-import,no-singlephase;
-# Disable with: `mulle-sourcetree mark mulle-thread no-link`
+# Disable with: `mulle-sourcetree mark mulle-thread no-header`
 #
 if( NOT MULLE_THREAD_LIBRARY)
    find_library( MULLE_THREAD_LIBRARY NAMES ${CMAKE_STATIC_LIBRARY_PREFIX}mulle-thread${CMAKE_STATIC_LIBRARY_SUFFIX} mulle-thread NO_CMAKE_SYSTEM_PATH NO_SYSTEM_ENVIRONMENT_PATH)
