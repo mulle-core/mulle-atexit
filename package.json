@@ -1,0 +1,16 @@
+{
+   "name" : "mulle-atexit",
+   "version" : "0.0.8",
+   "description" : "👼 Compatibility library to fix atexit",
+   "homepage" : "https://github.com/mulle-core/mulle-atexit",
+   "bugs" : "https://github.com/mulle-core/mulle-atexit/issues",
+   "keywords" : [],
+   "license" : "UNLICENSED",
+   "repository" : {
+      "type" : "git",
+      "url" : "mulle-core/mulle-atexit"
+   },
+   "dependencies" : {
+      "mulle-thread" : "mulle-concurrent/mulle-thread"
+   }
+}
