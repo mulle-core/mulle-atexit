@@ -7,19 +7,19 @@ export PROJECT_NAME="mulle-atexit"
 #
 #
 #
-export PROJECT_IDENTIFIER="mulle_atexit"
 
-
-#
-#
-#
-export PROJECT_DOWNCASE_IDENTIFIER="mulle_atexit"
 
 
 #
 #
 #
-export PROJECT_UPCASE_IDENTIFIER="MULLE_ATEXIT"
+
+
+
+#
+#
+#
+
 
 
 #
