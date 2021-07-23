@@ -1,3 +1,7 @@
+### 0.0.9
+
+* Various small improvements
+
 ### 0.0.8
 
 * mulle-sde upgrade and travis -> github migration
