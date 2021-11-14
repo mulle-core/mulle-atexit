@@ -4,14 +4,25 @@
 
 #include <assert.h>
 
+//#define DEBUG_VERBOSE
+
+#ifdef DEBUG_VERBOSE
+# include <stdio.h>
+# define TRACE()    fprintf( stderr, "%s\n", __FUNCTION__)
+# define TRACE1( s) fprintf( stderr, "%s: %s\n", __FUNCTION__, s)
+#else
+# define TRACE()    while( 0)
+# define TRACE1(s)  while( 0)
+#endif
+
 
 //
 // on some OS atexit just works correctly
 //
 #if defined( _WIN32)
 # define USE_ATEXIT
+# pragma message( "mulle_atexit uses atexit")
 #endif
-
 
 int   __MULLE_ATEXIT_ranlib__;
 
@@ -36,6 +47,8 @@ static void   run_exit_callbacks( void)
 {
    void   (*f)( void);
 
+   TRACE();
+
    mulle_thread_mutex_lock( &vars.lock);
 loop:
    f = 0;
@@ -55,6 +68,7 @@ loop:
    mulle_thread_mutex_unlock( &vars.lock);
    if( f)
    {
+      TRACE1( "call");
       (*f)();
       mulle_thread_mutex_lock( &vars.lock);
       goto loop;
@@ -65,6 +79,8 @@ loop:
 
 static void   init( void)
 {
+   TRACE();
+
    assert( MULLE_THREAD_ONCE_INIT == 0);
    mulle_thread_mutex_init( &vars.lock);
 #ifdef USE_ATEXIT
@@ -76,6 +92,8 @@ static void   init( void)
 MULLE_C_NEVER_INLINE
 void   _mulle_atexit( void (*f)( void))
 {
+   TRACE();
+
    mulle_thread_once( &vars.once, init);
    if( ! f)
       return;
@@ -92,6 +110,7 @@ void   _mulle_atexit( void (*f)( void))
       if( ! vars.n && vars.size)
       {
          mulle_thread_mutex_unlock( &vars.lock);
+         TRACE1( "call");
          (*f)();
          return;
       }
@@ -104,6 +123,7 @@ void   _mulle_atexit( void (*f)( void))
             abort();
       }
       vars.fs[ vars.n++] = f;
+      TRACE1( "add");
    }
    mulle_thread_mutex_unlock( &vars.lock);
 }
@@ -112,6 +132,8 @@ void   _mulle_atexit( void (*f)( void))
 
 int   mulle_atexit( void (*f)( void))
 {
+   TRACE();
+
    _mulle_atexit( f);
    return( 0);
 }
@@ -128,6 +150,8 @@ int   mulle_atexit( void (*f)( void))
 MULLE_C_CONSTRUCTOR( load_atexit)
 static void   load_atexit( void)
 {
+   TRACE();
+
    _mulle_atexit( 0); // protect from evil linker optimization and do "once"
 }
 
@@ -137,6 +161,8 @@ static void   load_atexit( void)
 MULLE_C_DESTRUCTOR( unload_atexit)
 static void   unload_atexit( void)
 {
+   TRACE();
+
    _mulle_atexit( 0); // protect from evil linker optimization and do "once"
    run_exit_callbacks();
 }
