@@ -28,10 +28,11 @@ static inline unsigned int   mulle_atexit_get_version_patch( void)
 }
 
 
-extern uint32_t   mulle_atexit_get_version( void);
+MULLE_ATEXIT_EXTERN_GLOBAL
+uint32_t   mulle_atexit_get_version( void);
 
 
 
-
+MULLE_ATEXIT_EXTERN_GLOBAL
 int   mulle_atexit( void (*f)( void));
 
