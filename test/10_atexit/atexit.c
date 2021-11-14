@@ -6,11 +6,13 @@
 static void   a( void)
 {
    printf( "a\n");
+   fflush( stdout);  // flush needed for windows
 }
 
 static void   b( void)
 {
    printf( "b\n");
+   fflush( stdout);  // flush needed for windows
 }
 
 
