@@ -8,6 +8,7 @@
 *.dSYM/
 
 
+atexit-bug.md
 var/
 
 

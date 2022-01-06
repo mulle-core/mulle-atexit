@@ -27,6 +27,12 @@ mulle-sde dependency add --c \
 ```
 
 
+### You are here
+
+![Overview](overview.dot.svg)
+
+
+
 ## Install
 
 ### mulle-sde
