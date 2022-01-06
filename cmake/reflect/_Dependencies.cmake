@@ -14,7 +14,7 @@ endif()
 #
 # Generated from sourcetree: 2DAC666A-AD85-4036-82EF-C0A7E45DCF1D;mulle-thread;no-all-load,no-cmake-searchpath,no-import,no-singlephase;
 # Disable with : `mulle-sourcetree mark mulle-thread no-link`
-# Disable for this platform: `mulle-sourcetree mark mulle-thread no-cmake-platform-windows`
+# Disable for this platform: `mulle-sourcetree mark mulle-thread no-cmake-platform-${MULLE_UNAME}`
 #
 if( NOT MULLE_THREAD_LIBRARY)
    find_library( MULLE_THREAD_LIBRARY NAMES ${CMAKE_STATIC_LIBRARY_PREFIX}mulle-thread${CMAKE_STATIC_LIBRARY_SUFFIX} mulle-thread NO_CMAKE_SYSTEM_PATH NO_SYSTEM_ENVIRONMENT_PATH)
