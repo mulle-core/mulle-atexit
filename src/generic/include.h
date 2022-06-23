@@ -29,8 +29,14 @@
 
 #include "_mulle-atexit-include.h"
 
-#ifndef MULLE_ATEXIT_EXTERN_GLOBAL
-# define MULLE_ATEXIT_EXTERN_GLOBAL MULLE_C_EXTERN_GLOBAL
+#ifdef MULLE_ATEXIT_BUILD
+# define MULLE_ATEXIT_GLOBAL    MULLE_C_GLOBAL
+#else
+# if defined( MULLE_ATEXIT_INCLUDE_DYNAMIC) || (defined( MULLE_INCLUDE_DYNAMIC) && ! defined( MULLE_ATEXIT_INCLUDE_STATIC))
+#  define MULLE_ATEXIT_GLOBAL   MULLE_C_EXTERN_GLOBAL
+# else
+#  define MULLE_ATEXIT_GLOBAL   extern
+# endif
 #endif
 
 /* You can add some more include statements here */
