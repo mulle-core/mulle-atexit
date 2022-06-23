@@ -11,9 +11,15 @@ This reimplements `atexit` as it should be, just under a different name.
 | ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-c/mulle-atexit.svg?branch=release) [![Build Status](https://github.com/mulle-c/mulle-atexit/workflows/CI/badge.svg?branch=release)](https://github.com/mulle-c/mulle-atexit/actions)
 
 
-You must **statically** link this library with your executable. Ensure that
-global symbols are exported and that the whole library is linked to the
-executable and not optimized away by the linker.
+You must **statically** link the mulle-atexit library with your executable.
+Ensure that global symbols are exported and that the whole library is linked
+to the executable and not optimized away by the linker.
+
+Platform | Linker Flags
+---------|--------------------------------------------------
+Linux    | `-Wl,--export-dynamic -Wl,--whole-archive`
+macos    | -force_load <library>
+
 
 ## Add
 

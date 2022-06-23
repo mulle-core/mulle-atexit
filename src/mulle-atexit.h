@@ -47,7 +47,7 @@
  *
  *  version:  major, minor, patch
  */
-#define MULLE_ATEXIT_VERSION  ((0 << 20) | (0 << 8) | 10)
+#define MULLE_ATEXIT_VERSION  ((0 << 20) | (0 << 8) | 11)
 
 
 static inline unsigned int   mulle_atexit_get_version_major( void)
@@ -68,12 +68,12 @@ static inline unsigned int   mulle_atexit_get_version_patch( void)
 }
 
 
-MULLE_ATEXIT_EXTERN_GLOBAL
+MULLE_ATEXIT_GLOBAL
 uint32_t   mulle_atexit_get_version( void);
 
 
 
-MULLE_ATEXIT_EXTERN_GLOBAL
+MULLE_ATEXIT_GLOBAL
 int   mulle_atexit( void (*f)( void));
 
 
