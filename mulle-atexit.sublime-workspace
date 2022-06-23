@@ -517,6 +517,17 @@
 			]
 		]
 	},
+	"buffers":
+	[
+		{
+			"file": "src/include.h",
+			"settings":
+			{
+				"buffer_size": 1386,
+				"line_ending": "Unix"
+			}
+		}
+	],
 	"build_system": "",
 	"build_system_choices":
 	[
@@ -585,6 +596,11 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/E/home/src/srcO/mulle-core/mulle-atexit",
+		"/E/home/src/srcO/mulle-core/mulle-atexit/src"
+	],
 	"file_history":
 	[
 		"/home/src/srcO/mulle-core/mulle-atexit/README.md",
@@ -746,6 +762,45 @@
 		"whole_word": false,
 		"wrap": true
 	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/include.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1386,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 399.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
 	"incremental_find":
 	{
 		"height": 39.0
@@ -790,6 +845,7 @@
 		"height": 124.0
 	},
 	"pinned_build_system": "",
+	"project": "mulle-atexit.sublime-project",
 	"replace":
 	{
 		"height": 74.0
@@ -1078,6 +1134,7 @@
 		],
 		"width": 584.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},
