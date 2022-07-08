@@ -2,13 +2,13 @@
 
 #### 👼 Compatibility library to fix atexit
 
-See [Challenges of shared library environments, Part 2](https://www.mulle-kybernetik.com/weblog/2019/atexit_is_broken.html), why and when this is necessary to use.
+See [Challenges of shared library environments, Part 2](//www.mulle-kybernetik.com/weblog/2019/atexit_is_broken.html), why and when this is necessary to use.
 
 This reimplements `atexit` as it should be, just under a different name.
 
 | Release Version
 |-----------------------------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-c/mulle-atexit.svg?branch=release) [![Build Status](https://github.com/mulle-c/mulle-atexit/workflows/CI/badge.svg?branch=release)](https://github.com/mulle-c/mulle-atexit/actions)
+| ![Mulle kybernetiK tag](//img.shields.io/github/tag/mulle-core/mulle-atexit.svg?branch=release) [![Build Status](//github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg?branch=release)](//github.com/mulle-core/mulle-atexit/actions)
 
 
 You must **statically** link the mulle-atexit library with your executable.
@@ -47,7 +47,7 @@ Use [mulle-sde](//github.com/mulle-sde) to build and install mulle-atexit and al
 
 ```
 mulle-sde install --prefix /usr/local \
-   https://github.com/mulle-core/mulle-atexit/archive/latest.tar.gz
+   //github.com/mulle-core/mulle-atexit/archive/latest.tar.gz
 ```
 
 ### Manual Installation
