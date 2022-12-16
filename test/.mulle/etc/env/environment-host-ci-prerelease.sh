@@ -1,54 +1,54 @@
 #
-# mulle-atexit nodetype: ${MULLE_ATEXIT_NODETYPE:-tar}
+# mulle-atexit nodetype: ${MULLE__ATEXIT_NODETYPE:-tar}
 #
-export MULLE_ATEXIT_NODETYPE="git"
+export MULLE__ATEXIT_NODETYPE="git"
 
 
 #
-# mulle-atexit url: ${MULLE_ATEXIT_URL:-https://github.com/mulle-concurrent/mulle-atexit/archive/${MULLE_TAG}.tar.gz}
+# mulle-atexit url: ${MULLE__ATEXIT_URL:-https://github.com/mulle-concurrent/mulle-atexit/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE_ATEXIT_URL="https://github.com/mulle-concurrent/mulle-atexit.git"
+export MULLE__ATEXIT_URL="https://github.com/mulle-concurrent/mulle-atexit.git"
 
 
 #
-# mulle-atexit branch: ${MULLE_ATEXIT_BRANCH}
+# mulle-atexit branch: ${MULLE__ATEXIT_BRANCH}
 #
-export MULLE_ATEXIT_BRANCH="prerelease"
+export MULLE__ATEXIT_BRANCH="prerelease"
 
 
 #
-# mulle-thread nodetype: ${MULLE_THREAD_NODETYPE:-tar}
+# mulle-thread nodetype: ${MULLE__THREAD_NODETYPE:-tar}
 #
-export MULLE_THREAD_NODETYPE="git"
+export MULLE__THREAD_NODETYPE="git"
 
 
 #
-# mulle-thread url: ${MULLE_THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_TAG}.tar.gz}
+# mulle-thread url: ${MULLE__THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE_THREAD_URL="https://github.com/mulle-concurrent/mulle-thread.git"
+export MULLE__THREAD_URL="https://github.com/mulle-concurrent/mulle-thread.git"
 
 
 #
-# mulle-thread branch: ${MULLE_THREAD_BRANCH}
+# mulle-thread branch: ${MULLE__THREAD_BRANCH}
 #
-export MULLE_THREAD_BRANCH="prerelease"
+export MULLE__THREAD_BRANCH="prerelease"
 
 
 #
-# mulle-c11 nodetype: ${MULLE_C11_NODETYPE:-tar}
+# mulle-c11 nodetype: ${MULLE__C11_NODETYPE:-tar}
 #
-export MULLE_C11_NODETYPE="git"
+export MULLE__C11_NODETYPE="git"
 
 
 #
-# mulle-c11 url: ${MULLE_C11_URL:-https://github.com/mulle-c/mulle-c11/archive/${MULLE_TAG}.tar.gz}
+# mulle-c11 url: ${MULLE__C11_URL:-https://github.com/mulle-c/mulle-c11/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE_C11_URL="https://github.com/mulle-c/mulle-c11.git"
+export MULLE__C11_URL="https://github.com/mulle-c/mulle-c11.git"
 
 
 #
-# mulle-c11 branch: ${MULLE_C11_BRANCH}
+# mulle-c11 branch: ${MULLE__C11_BRANCH}
 #
-export MULLE_C11_BRANCH="prerelease"
+export MULLE__C11_BRANCH="prerelease"
 
 
