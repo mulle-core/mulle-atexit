@@ -8,7 +8,7 @@
    "license" : "UNLICENSED",
    "repository" : {
       "type" : "git",
-      "url" : "mulle-core/mulle-atexit"
+      "url" : "github:mulle-core/mulle-atexit"
    },
    "dependencies" : {
       "mulle-thread" : "git://github.com/mulle-concurrent/mulle-thread",
