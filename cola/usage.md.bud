@@ -1,0 +1,10 @@
+You must **statically** link the mulle-atexit library with your executable.
+Ensure that global symbols are exported and that the whole library is linked
+to the executable and not optimized away by the linker.
+
+Platform | Linker Flags
+---------|--------------------------------------------------
+Linux    | `-Wl,--export-dynamic -Wl,--whole-archive`
+macos    | -force_load <library>
+
+

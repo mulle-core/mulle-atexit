@@ -1,0 +1,3 @@
+See [Challenges of shared library environments, Part 2](//www.mulle-kybernetik.com/weblog/2019/atexit_is_broken.html), why and when this is necessary to use.
+
+This reimplements `atexit` as it should be, just under a different name.
