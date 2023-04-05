@@ -1,0 +1,20 @@
+{
+   "name" : "mulle-atexit",
+   "version" : "0.0.12",
+   "description" : "Compatibility library to fix atexit",
+   "keywords" : [],
+   "license" : "UNLICENSED",
+   "repo" : "mulle-core/mulle-atexit",
+   "src" : [
+      "src/generic/include-private.h",
+      "src/generic/include.h",
+      "src/mulle-atexit.c",
+      "src/mulle-atexit.h",
+      "src/reflect/_mulle-atexit-include-private.h",
+      "src/reflect/_mulle-atexit-include.h",
+      "src/reflect/_mulle-atexit-versioncheck.h"
+   ],
+   "dependencies" : {
+      "mulle-concurrent/mulle-thread": "*"
+   }
+}
