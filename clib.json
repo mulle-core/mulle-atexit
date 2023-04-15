@@ -1,6 +1,6 @@
 {
    "name" : "mulle-atexit",
-   "version" : "0.0.12",
+   "version" : "0.0.13",
    "description" : "Compatibility library to fix atexit",
    "keywords" : [],
    "license" : "UNLICENSED",

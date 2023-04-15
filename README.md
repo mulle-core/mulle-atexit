@@ -6,9 +6,10 @@ See [Challenges of shared library environments, Part 2](//www.mulle-kybernetik.c
 
 This reimplements `atexit` as it should be, just under a different name.
 
-| Release Version
-|-----------------------------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-core/mulle-atexit.svg?branch=release) [![Build Status](https://github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg?branch=release)](//github.com/mulle-core/mulle-atexit/actions)
+| Release Version                                       | Release Notes
+|-------------------------------------------------------|--------------
+| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-core/mulle-atexit.svg?branch=release) [![Build Status](https://github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg?branch=release)](//github.com/mulle-core/mulle-atexit/actions)| [RELEASENOTES](RELEASENOTES.md) |
+
 
 
 You must **statically** link the mulle-atexit library with your executable.
@@ -21,27 +22,32 @@ Linux    | `-Wl,--export-dynamic -Wl,--whole-archive`
 macos    | -force_load <library>
 
 
+
+
+
+
 ## Add
 
 Use [mulle-sde](//github.com/mulle-sde) to add mulle-atexit to your project:
 
 ``` sh
-mulle-sde dependency add --c \
-                         --github mulle-core \
-                         --marks no-dynamic-link,no-intermediate-link,no-singlephase,all-load \
-                         mulle-atexit
+mulle-sde add github:mulle-core/mulle-atexit
 ```
 
+To only add the sources of mulle-atexit with dependency
+sources use [clib](https://github.com/clibs/clib):
 
-### You are here
 
-![Overview](overview.dot.svg)
+``` sh
+clib install --out src/mulle-core mulle-core/mulle-atexit
+```
 
+Add `-isystem src/mulle-core` to your `CFLAGS` and compile all the sources that were downloaded with your project.
 
 
 ## Install
 
-### mulle-sde
+### Install with mulle-sde
 
 Use [mulle-sde](//github.com/mulle-sde) to build and install mulle-atexit and all dependencies:
 
@@ -52,15 +58,13 @@ mulle-sde install --prefix /usr/local \
 
 ### Manual Installation
 
-
 Install the requirements:
 
-Requirements                                               | Description
------------------------------------------------------------|-----------------------
-[mulle-thread](//github.com/mulle-concurrent/mulle-thread) | Threads and atomics
+| Requirements                                 | Description
+|----------------------------------------------|-----------------------
+| [mulle-thread](https://github.com/mulle-concurrent/mulle-thread)             | 🔠 Cross-platform thread/mutex/tss/atomic operations in C
 
-
-Install into `/usr/local`:
+Install **mulle-atexit** into `/usr/local` with [cmake](https://cmake.org):
 
 ``` sh
 cmake -B build \
@@ -70,5 +74,9 @@ cmake -B build \
 cmake --build build --config Release &&
 cmake --install build --config Release
 ```
+
+## Author
+
+[Nat!](https://mulle-kybernetik.com/weblog) for Mulle kybernetiK
 
 
