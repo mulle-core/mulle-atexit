@@ -29,13 +29,13 @@
 
 #include "_mulle-atexit-include.h"
 
-#ifdef MULLE_ATEXIT_BUILD
-# define MULLE_ATEXIT_GLOBAL    MULLE_C_GLOBAL
+#ifdef MULLE__ATEXIT_BUILD
+# define MULLE__ATEXIT_GLOBAL    MULLE_C_GLOBAL
 #else
 # if defined( MULLE_ATEXIT_INCLUDE_DYNAMIC) || (defined( MULLE_INCLUDE_DYNAMIC) && ! defined( MULLE_ATEXIT_INCLUDE_STATIC))
-#  define MULLE_ATEXIT_GLOBAL   MULLE_C_EXTERN_GLOBAL
+#  define MULLE__ATEXIT_GLOBAL   MULLE_C_EXTERN_GLOBAL
 # else
-#  define MULLE_ATEXIT_GLOBAL   extern
+#  define MULLE__ATEXIT_GLOBAL   extern
 # endif
 #endif
 
