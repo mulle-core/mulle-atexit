@@ -47,33 +47,33 @@
  *
  *  version:  major, minor, patch
  */
-#define MULLE_ATEXIT_VERSION  ((0 << 20) | (0 << 8) | 13)
+#define MULLE__ATEXIT_VERSION  ((0 << 20) | (0 << 8) | 13)
 
 
 static inline unsigned int   mulle_atexit_get_version_major( void)
 {
-   return( MULLE_ATEXIT_VERSION >> 20);
+   return( MULLE__ATEXIT_VERSION >> 20);
 }
 
 
 static inline unsigned int   mulle_atexit_get_version_minor( void)
 {
-   return( (MULLE_ATEXIT_VERSION >> 8) & 0xFFF);
+   return( (MULLE__ATEXIT_VERSION >> 8) & 0xFFF);
 }
 
 
 static inline unsigned int   mulle_atexit_get_version_patch( void)
 {
-   return( MULLE_ATEXIT_VERSION & 0xFF);
+   return( MULLE__ATEXIT_VERSION & 0xFF);
 }
 
 
-MULLE_ATEXIT_GLOBAL
+MULLE__ATEXIT_GLOBAL
 uint32_t   mulle_atexit_get_version( void);
 
 
 
-MULLE_ATEXIT_GLOBAL
+MULLE__ATEXIT_GLOBAL
 int   mulle_atexit( void (*f)( void));
 
 
