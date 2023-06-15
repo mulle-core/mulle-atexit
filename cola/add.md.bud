@@ -1,0 +1,18 @@
+## Add
+
+Use [mulle-sde](//github.com/mulle-sde) to add {{ project.name }} to your project:
+
+``` sh
+mulle-sde add {{ project.domain }}:{{ project.user }}/{{ project.repo }}
+```
+
+To only add the sources of {{ project.name }} with dependency
+sources use [clib](https://github.com/clibs/clib):
+
+
+``` sh
+clib install --out src/{{ project.user }} {{ project.user }}/{{ project.repo }}
+```
+
+Add `-isystem src/{{ project.user }}` to your `CFLAGS` and compile all the sources that were downloaded with your project.
+
