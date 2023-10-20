@@ -35,7 +35,6 @@ src/generic/include-private.h
 #
 set( PUBLIC_GENERATED_HEADERS
 src/reflect/_mulle-atexit-include.h
-src/reflect/_mulle-atexit-versioncheck.h
 )
 
 #
