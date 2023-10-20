@@ -64,6 +64,8 @@ Install the requirements:
 |----------------------------------------------|-----------------------
 | [mulle-thread](https://github.com/mulle-concurrent/mulle-thread)             | 🔠 Cross-platform thread/mutex/tss/atomic operations in C
 
+Download the latest [tar](https://github.com/mulle-core/mulle-atexit/archive/refs/tags/latest.tar.gz) or [zip](https://github.com/mulle-core/mulle-atexit/archive/refs/tags/latest.zip) archive and unpack it.
+
 Install **mulle-atexit** into `/usr/local` with [cmake](https://cmake.org):
 
 ``` sh
