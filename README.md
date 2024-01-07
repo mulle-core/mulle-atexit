@@ -6,9 +6,11 @@ See [Challenges of shared library environments, Part 2](//www.mulle-kybernetik.c
 
 This reimplements `atexit` as it should be, just under a different name.
 
+
+
 | Release Version                                       | Release Notes
 |-------------------------------------------------------|--------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-core/mulle-atexit.svg?branch=release) [![Build Status](https://github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg?branch=release)](//github.com/mulle-core/mulle-atexit/actions)| [RELEASENOTES](RELEASENOTES.md) |
+| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-core/mulle-atexit.svg?branch=release) [![Build Status](https://github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg?branch=release)](//github.com/mulle-core/mulle-atexit/actions) | [RELEASENOTES](RELEASENOTES.md) |
 
 
 
@@ -21,6 +23,12 @@ Platform | Linker Flags
 Linux    | `-Wl,--export-dynamic -Wl,--whole-archive`
 macos    | -force_load <library>
 
+
+
+
+### You are here
+
+![Overview](overview.dot.svg)
 
 
 
@@ -77,8 +85,10 @@ cmake --build build --config Release &&
 cmake --install build --config Release
 ```
 
+
 ## Author
 
-[Nat!](https://mulle-kybernetik.com/weblog) for Mulle kybernetiK
+[Nat!](https://mulle-kybernetik.com/weblog) for Mulle kybernetiK  
+
 
 
