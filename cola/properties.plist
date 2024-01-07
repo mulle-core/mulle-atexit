@@ -7,7 +7,7 @@
       user="mulle-core";
       repo="mulle-atexit";
       homepage="https://github.com/mulle-core/mulle-atexit";
-      license="UNLICENSED"
+      license="BSD-3-Clause"
    };
    dependencies =
    (

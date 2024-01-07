@@ -1,9 +1,9 @@
 {
    "name" : "mulle-atexit",
-   "version" : "0.0.13",
-   "description" : "Compatibility library to fix atexit",
+   "version" : "0.0.14",
+   "description" : "👼 Compatibility library to fix atexit",
    "keywords" : [],
-   "license" : "UNLICENSED",
+   "license" : "BSD-3-Clause",
    "repo" : "mulle-core/mulle-atexit",
    "src" : [
       "src/generic/include-private.h",
@@ -11,8 +11,7 @@
       "src/mulle-atexit.c",
       "src/mulle-atexit.h",
       "src/reflect/_mulle-atexit-include-private.h",
-      "src/reflect/_mulle-atexit-include.h",
-      "src/reflect/_mulle-atexit-versioncheck.h"
+      "src/reflect/_mulle-atexit-include.h"
    ],
    "dependencies" : {
       "mulle-concurrent/mulle-thread": "*"
