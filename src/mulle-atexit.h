@@ -47,7 +47,7 @@
  *
  *  version:  major, minor, patch
  */
-#define MULLE__ATEXIT_VERSION  ((0UL << 20) | (0 << 8) | 14)
+#define MULLE__ATEXIT_VERSION  ((0UL << 20) | (0 << 8) | 15)
 
 
 static inline unsigned int   mulle_atexit_get_version_major( void)

@@ -81,7 +81,7 @@ static void   init( void)
 {
    TRACE();
 
-   assert( MULLE_THREAD_ONCE_INIT == 0);
+   assert( MULLE_THREAD_ONCE_DATA == 0);
    mulle_thread_mutex_init( &vars.lock);
 #ifdef USE_ATEXIT
    atexit( run_exit_callbacks);
