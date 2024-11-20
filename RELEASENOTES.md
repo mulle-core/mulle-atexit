@@ -1,3 +1,9 @@
+### 0.0.15
+
+
+
+* adapt to change in mulle-thread
+
 ### 0.0.14
 
 * Various small improvements
