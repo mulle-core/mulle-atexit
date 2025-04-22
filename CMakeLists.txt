@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.14)
 
-project( mulle-atexit VERSION 0.0.15 LANGUAGES C)
+project( mulle-atexit VERSION 0.0.16 LANGUAGES C)
 
 
 
