@@ -8,9 +8,9 @@ This reimplements `atexit` as it should be, just under a different name.
 
 
 
-| Release Version                                       | Release Notes
-|-------------------------------------------------------|--------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-core/mulle-atexit.svg) [![Build Status](https://github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg)](//github.com/mulle-core/mulle-atexit/actions) | [RELEASENOTES](RELEASENOTES.md) |
+| Release Version                                       | Release Notes  | AI Documentation
+|-------------------------------------------------------|----------------|---------------
+| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-core/mulle-atexit.svg) [![Build Status](https://github.com/mulle-core/mulle-atexit/workflows/CI/badge.svg)](//github.com/mulle-core/mulle-atexit/actions) | [RELEASENOTES](RELEASENOTES.md) | [DeepWiki for mulle-atexit](https://deepwiki.com/mulle-core/mulle-atexit)
 
 
 
