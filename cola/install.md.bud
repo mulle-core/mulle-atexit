@@ -1,0 +1,46 @@
+## Install
+
+Use [mulle-sde](//github.com/mulle-sde) to build and install {{ project.name }}{{ dependencies.count ? " and all dependencies" : "" }}:
+
+``` sh
+mulle-sde install --prefix /usr/local \
+   https://{{ project.host ? project.host : "github.com"}}/{{ project.user }}/{{ project.repo }}/archive/latest.tar.gz
+```
+
+### Legacy Installation
+
+#### Requirements
+
+Preferably install mulle-core and be done with it:
+
+| Requirements                                     | Description
+|--------------------------------------------------|-----------------------
+| [mulle-core](//github.com/mulle-core/mulle-core) |🌋 Almagamated library of mulle-core + mulle-concurrent + mulle-c
+
+
+{% if dependencies.count %}
+Or if you really want to do it exhaustively:
+
+| Requirements                                 | Description
+|----------------------------------------------|-----------------------
+{% for item in dependencies %}
+| [{{ item.name}}]({{ item.url }})             | {{ item.description }}
+{% endfor %}
+{% endif %}
+
+#### Download & Install
+
+Download the latest [tar](https://github.com/{{ project.user }}/{{ project.name }}/archive/refs/tags/latest.tar.gz) or [zip](https://github.com/{{ project.user }}/{{ project.name }}/archive/refs/tags/latest.zip) archive and unpack it.
+
+Install **{{ project.name }}** into `/usr/local` with [cmake](https://cmake.org):
+
+``` sh
+export MULLE_SDK_PATH="/usr/local" # important!
+cmake -B build \
+      -DCMAKE_INSTALL_PREFIX="${MULLE_SDK_PATH}" \
+      -DCMAKE_PREFIX_PATH="${MULLE_SDK_PATH}" \
+      -DCMAKE_BUILD_TYPE=Release &&
+cmake --build build --config Release &&
+cmake --install build --config Release
+```
+
