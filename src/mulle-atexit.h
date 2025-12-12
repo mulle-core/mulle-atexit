@@ -72,8 +72,11 @@ MULLE__ATEXIT_GLOBAL
 uint32_t   mulle_atexit_get_version( void);
 
 
-
-MULLE__ATEXIT_GLOBAL
+#ifdef MULLE__ATEXIT_BUILD
+MULLE_C_EXTERN_RENDEZVOUS_SYMBOL
+#else
+MULLE_C_RENDEZVOUS_SYMBOL
+#endif
 int   mulle_atexit( void (*f)( void));
 
 

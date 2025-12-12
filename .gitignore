@@ -45,3 +45,8 @@ coverage*.html
 cola/wilted/
 .mulle/etc/make/build-dir
 vgcore.*
+test*/**/*.test.*
+/*.md
+!/AGENTS.md
+!/README.md
+build-*/
