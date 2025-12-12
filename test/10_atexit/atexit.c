@@ -1,5 +1,6 @@
 #include <mulle-atexit/mulle-atexit.h>
 
+#include <stdio.h>
 #include <stdlib.h>
 
 

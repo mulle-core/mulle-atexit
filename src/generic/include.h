@@ -30,13 +30,10 @@
 #include "_mulle-atexit-include.h"
 
 #ifdef MULLE__ATEXIT_BUILD
-# define MULLE__ATEXIT_GLOBAL    MULLE_C_GLOBAL
+# define MULLE__ATEXIT_GLOBAL        MULLE_C_GLOBAL
 #else
-# if defined( MULLE_ATEXIT_INCLUDE_DYNAMIC) || (defined( MULLE_INCLUDE_DYNAMIC) && ! defined( MULLE_ATEXIT_INCLUDE_STATIC))
-#  define MULLE__ATEXIT_GLOBAL   MULLE_C_EXTERN_GLOBAL
-# else
-#  define MULLE__ATEXIT_GLOBAL   extern
-# endif
+// mulle-atexit can not be build dynamically
+# define MULLE__ATEXIT_GLOBAL       extern
 #endif
 
 /* You can add some more include statements here */

@@ -24,8 +24,6 @@
 # pragma message( "mulle_atexit uses atexit")
 #endif
 
-int   __MULLE_ATEXIT_ranlib__;
-
 
 uint32_t   mulle_atexit_get_version( void)
 {
