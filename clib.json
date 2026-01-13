@@ -1,9 +1,9 @@
 {
    "name" : "mulle-atexit",
-   "version" : "0.0.14",
+   "version" : "0.0.17",
    "description" : "👼 Compatibility library to fix atexit",
    "keywords" : [],
-   "license" : "BSD-3-Clause",
+   "license" : "UNLICENSED",
    "repo" : "mulle-core/mulle-atexit",
    "src" : [
       "src/generic/include-private.h",
