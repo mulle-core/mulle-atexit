@@ -4,9 +4,12 @@
 
 #include <assert.h>
 
-//#define DEBUG_VERBOSE
+#ifdef DEBUG
+//# define MULLE_ATEXIT_DEBUG
+#endif
 
-#ifdef DEBUG_VERBOSE
+
+#ifdef MULLE_ATEXIT_DEBUG
 # include <stdio.h>
 # define TRACE()    fprintf( stderr, "%s\n", __FUNCTION__)
 # define TRACE1( s) fprintf( stderr, "%s: %s\n", __FUNCTION__, s)
@@ -15,14 +18,17 @@
 # define TRACE1(s)  while( 0)
 #endif
 
+#ifdef MULLE_INCLUDE_DYNAMIC
+# error "You can't make mulle-atexit part of a shared library"
+#endif
 
 //
 // on some OS atexit just works correctly
 //
-#if defined( _WIN32)
-# define USE_ATEXIT
-# pragma message( "mulle_atexit uses atexit")
-#endif
+// #if defined( _WIN32)
+// # define USE_ATEXIT
+// # pragma message( "mulle_atexit uses atexit")
+// #endif
 
 
 uint32_t   mulle_atexit_get_version( void)
@@ -33,7 +39,6 @@ uint32_t   mulle_atexit_get_version( void)
 
 static struct
 {
-   mulle_thread_once_t    once;
    mulle_thread_mutex_t   lock;
    unsigned int           n;
    unsigned int           size;
@@ -88,14 +93,25 @@ static void   init( void)
 
 
 MULLE_C_NEVER_INLINE
-void   _mulle_atexit( void (*f)( void))
+int   _mulle_atexit( void (*f)( void))
 {
    TRACE();
 
-   mulle_thread_once( &vars.once, init);
-   if( ! f)
-      return;
+#ifdef MULLE_ATEXIT_DEBUG
+   fprintf( stderr , "0x%tx: _mulle_atexit %p starts\n", (intptr_t) mulle_thread_id(), (void *) f);
+#endif
+   mulle_thread_once_do( once)
+   {
+      init();
+   }
 
+   if( ! f)
+   {
+#ifdef MULLE_ATEXIT_DEBUG
+      fprintf( stderr , "0x%tx: _mulle_atexit returns with no function to add\n", (intptr_t) mulle_thread_id());
+#endif
+     return( 0);
+   }
    //
    // If everything ran already, we could only execute zero priority code
    // with good conscience. But, as we want to support libraries being linked
@@ -103,6 +119,10 @@ void   _mulle_atexit( void (*f)( void))
    // on the way it is compiled. So we just execute them. We are after all
    // just a fix for the ELF shared library loading.
    //
+#ifdef MULLE_ATEXIT_DEBUG
+   fprintf( stderr , "0x%tx: _mulle_atexit locks mutex\n", (intptr_t) mulle_thread_id());
+#endif
+
    mulle_thread_mutex_lock( &vars.lock);
    {
       if( ! vars.n && vars.size)
@@ -110,7 +130,7 @@ void   _mulle_atexit( void (*f)( void))
          mulle_thread_mutex_unlock( &vars.lock);
          TRACE1( "call");
          (*f)();
-         return;
+         return( 0);
       }
 
       if( vars.n >= vars.size)
@@ -124,15 +144,10 @@ void   _mulle_atexit( void (*f)( void))
       TRACE1( "add");
    }
    mulle_thread_mutex_unlock( &vars.lock);
-}
 
-
-
-int   mulle_atexit( void (*f)( void))
-{
-   TRACE();
-
-   _mulle_atexit( f);
+#ifdef MULLE_ATEXIT_DEBUG
+   fprintf( stderr , "0x%tx: _mulle_atexit unlocked mutex\n", (intptr_t) mulle_thread_id());
+#endif
    return( 0);
 }
 
@@ -145,8 +160,8 @@ int   mulle_atexit( void (*f)( void))
 // (this could run in a shared lib too), but because of the availability of
 // the `mulle_atinit` symbol
 //
-MULLE_C_CONSTRUCTOR( load_atexit)
-static void   load_atexit( void)
+MULLE_C_CONSTRUCTOR( mulle_atexit_load)
+static void   mulle_atexit_load( void)
 {
    TRACE();
 
@@ -156,8 +171,8 @@ static void   load_atexit( void)
 
 #ifndef USE_ATEXIT
 
-MULLE_C_DESTRUCTOR( unload_atexit)
-static void   unload_atexit( void)
+MULLE_C_DESTRUCTOR( mulle_atexit_unload)
+static void   mulle_atexit_unload( void)
 {
    TRACE();
 
@@ -168,3 +183,17 @@ static void   unload_atexit( void)
 #endif
 
 
+
+#if defined( _WIN32) && defined( MULLE_INCLUDE_DYNAMIC) && defined( MULLE_ATEXIT_DEBUG) && ! defined( MULLE__CORE__ALL_LOAD_BUILD)
+BOOL WINAPI   DllMain( HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved )
+{
+   MULLE_C_UNUSED( hinstDLL);
+   MULLE_C_UNUSED( fdwReason);
+   MULLE_C_UNUSED( lpvReserved);
+
+   // BASICALLY: if you see this at all, its wrong!
+   if( fdwReason == DLL_PROCESS_ATTACH)
+      fprintf( stderr, "mulle_atexit DLL loaded\n");
+   return TRUE;
+}
+#endif

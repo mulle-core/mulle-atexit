@@ -52,3 +52,9 @@ export PROJECT_DIALECT="c"
 export PROJECT_EXTENSIONS="c"
 
 
+#
+#
+#
+export PROJECT_ASSET_DIR="asset"
+
+

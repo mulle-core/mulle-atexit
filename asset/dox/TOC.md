@@ -1,4 +1,5 @@
 # mulle-atexit Library Documentation for AI
+<!-- Keywords: lifecycle, cleanup -->
 
 ## 1. Introduction & Purpose
 
