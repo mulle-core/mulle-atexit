@@ -29,12 +29,17 @@
 
 #include "_mulle-atexit-include.h"
 
-#ifdef MULLE__ATEXIT_BUILD
-# define MULLE__ATEXIT_GLOBAL        MULLE_C_GLOBAL
-#else
-// mulle-atexit can not be build dynamically
-# define MULLE__ATEXIT_GLOBAL       extern
-#endif
+
+// atexit will always be statically linked!!
+#define MULLE__ATEXIT_GLOBAL       extern
+
+
+// #if defined( MULLE__ATEXIT_BUILD) || defined( MULLE__CORE__ALL__LOAD_BUILD)
+// # define MULLE__ATEXIT_GLOBAL        MULLE_C_GLOBAL
+// #else
+// // mulle-atexit can not be build dynamically
+// # define MULLE__ATEXIT_GLOBAL       extern
+// #endif
 
 /* You can add some more include statements here */
 

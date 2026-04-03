@@ -1,6 +1,6 @@
 //
-//  mulle-atinit.h
-//  mulle-atinit
+//  mulle-atexit.h
+//  mulle-atexit
 //
 //  Created by Nat!
 //  Copyright (c) 2017 Nat! - Mulle kybernetiK.
@@ -42,6 +42,19 @@
 
 #include <stdint.h>
 
+
+#if defined( _WIN32) && defined( MULLE_C_TRACE_DLL_EXPORTS)
+# if defined( MULLE_INCLUDE_DYNAMIC)
+#  pragma message("MULLE_INCLUDE_DYNAMIC is defined")
+# endif
+# if defined( MULLE__ATEXIT_GLOBAL)
+#  pragma message("MULLE__ATEXIT_GLOBAL is defined as \"" MULLE_C_STRINGIFY_MACRO( MULLE__ATEXIT_GLOBAL) "\"")
+# else
+#  pragma message("MULLE__ATEXIT_GLOBAL is undefined")
+# endif
+#endif
+
+
 /*
  *  (c) 2019 nat ORGANIZATION
  *
@@ -72,13 +85,28 @@ MULLE__ATEXIT_GLOBAL
 uint32_t   mulle_atexit_get_version( void);
 
 
-#ifdef MULLE__ATEXIT_BUILD
-MULLE_C_EXTERN_RENDEZVOUS_SYMBOL
-#else
-MULLE_C_RENDEZVOUS_SYMBOL
-#endif
-int   mulle_atexit( void (*f)( void));
+typedef int   mulle_atexit_function_t( void (*f)( void));
 
+MULLE__ATEXIT_GLOBAL
+int   _mulle_atexit( void (*f)( void));
+
+static inline int   mulle_atexit( void (*f)(void))
+{
+#if defined( _WIN32) && defined( MULLE_INCLUDE_DYNAMIC)
+   mulle_atexit_function_t   *p_mulle_atexit;
+   // as this is run like once per translation unit, it's no use
+   // caching it (and also where ?)
+   p_mulle_atexit = (mulle_atexit_function_t *) mulle_dlsym_exe( "_mulle_atexit");
+   if( ! p_mulle_atexit)
+   {
+      fprintf( stderr, "_mulle_atexit is not available yet, bummer\n");
+      return;
+   }
+   return( (*p_mulle_atexit)( f));
+#else
+   return( _mulle_atexit( f));
+#endif
+}
 
 
 #ifdef __has_include

@@ -22,7 +22,7 @@
 //    remove #include: `mulle-sde dependency mark mulle-thread no-header`
 //    rename              : `mulle-sde dependency|library set mulle-thread include whatever.h`
 //    reorder             : `mulle-sde dependency move mulle-thread <up|down>`
-//    toggle #include: `mulle-sde dependency mark mulle-thread [no-]import`
+//    toggle objc         : `mulle-sde dependency mark mulle-thread [no-]import`
 //    toggle public       : `mulle-sde dependency mark mulle-thread [no-]public`
 //    toggle optional     : `mulle-sde dependency mark mulle-thread [no-]require`
 //    remove for platform : `mulle-sde dependency mark mulle-thread no-platform-<uname>`
