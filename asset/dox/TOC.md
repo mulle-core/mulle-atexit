@@ -1,115 +1,118 @@
 # mulle-atexit Library Documentation for AI
-<!-- Keywords: lifecycle, cleanup -->
-
+<!-- Keywords: atexit, callbacks, lifecycle, LIFO, staticlink -->
 ## 1. Introduction & Purpose
 
-`mulle-atexit` provides a robust, thread-safe replacement for the standard C `atexit` function. The standard `atexit` is problematic in environments with dynamically loaded and unloaded shared libraries (e.g., plugins), as handlers registered in a library may be called after the library has already been unloaded, leading to crashes.
-
-This library solves that problem by implementing an `atexit` mechanism that is aware of shared library boundaries. It ensures that handlers are executed correctly when a library is unloaded, not just when the entire process exits. It is designed to be statically linked into the main executable to provide a single, centralized exit handler registry for the entire process and all its dynamic components.
+- mulle-atexit reimplements and fixes the C runtime `atexit` handling for environments where shared-library unloading and symbol resolution break program-exit callbacks.
+- Problem solved: ensures registered exit callbacks are reliably stored and executed (LIFO) even when libraries are linked statically into an executable or when shared-library unloading would otherwise lose callbacks.
+- Key features: simple registration API, version helpers, thread-safe registration, constructor/destructor wiring, and explicit requirement to statically link the library into the final executable.
 
 ## 2. Key Concepts & Design Philosophy
 
-- **Centralized Registry:** The core of the library is a global, thread-safe registry of exit handlers. By statically linking `mulle-atexit` into the main executable and forcing the linker to load the entire archive, this registry becomes the single source of truth for all `atexit` calls within the process.
-- **Scope Awareness:** Unlike the standard `atexit`, `mulle-atexit` is designed to be called from shared libraries. It maintains its own list of handlers.
-- **Explicit Invocation:** The registered handlers are not called automatically by the system `exit()`. Instead, they must be invoked explicitly by calling `mulle_atexit_execute` at the appropriate time (e.g., from a `main` function's `atexit` handler, or from a library's unload function).
-- **Thread Safety:** The registry is protected by a mutex (`mulle-thread`), making it safe to register handlers from multiple threads concurrently.
+- Deterministic LIFO execution of registered callbacks (matches standard atexit semantics).
+- Library maintains its own dynamic stack of function pointers rather than relying solely on platform `atexit`, avoiding lost callbacks during shared-library unloads.
+- Thread-safety using an internal mutex plus once-initialization.
+- Small, dependency-minimal design that expects static linking into the executable; the library uses constructor/destructor hooks to ensure callbacks are processed.
 
 ## 3. Core API & Data Structures
 
-The API is simple and consists of two main functions and a few variants, all exposed through `mulle-atexit.h`. It does not expose any public data structures.
+This section is organized by the public header `mulle-atexit.h` (see `src/mulle-atexit.h`).
 
-### 3.1. `mulle-atexit.h`
+### 3.1. [mulle-atexit.h]
 
-#### Handler Registration
-- `mulle_atexit(function)`: Registers a function to be called upon exit. The function must take no arguments and return `void`. This is the direct replacement for the standard `atexit`.
-- `mulle_atexit_param(function, arg)`: Registers a function that takes a single `void *` argument. The `arg` is passed to the function when it is called.
+#### Version helpers
+- MULLE__ATEXIT_VERSION: packed version (major<<20 | minor<<8 | patch).
+- mulle_atexit_get_version_major()/minor()/patch(): inline helpers returning version components.
+- mulle_atexit_get_version(): returns packed uint32_t version.
 
-#### Handler Execution
-- `mulle_atexit_execute(void)`: Executes all registered handlers in Last-In, First-Out (LIFO) order. After execution, the list of handlers is cleared. This function should be called when the process or library is shutting down.
+#### Types and registration
+- typedef int mulle_atexit_function_t( void (*f)( void));
+  - Signature type used for dynamic lookup on some platforms.
 
-#### Global Control
-- `mulle_atexit_is_global(void)`: A function that can be weakly linked. If another `mulle-atexit` instance is already loaded (e.g., in the main executable), this function will be replaced by the primary one, allowing a shared library to detect if it should use its own local `atexit` handlers or the global ones.
+- int _mulle_atexit( void (*f)( void));
+  - Core function that registers `f` to be called at program exit or unload.
+  - Stores `f` in an internal dynamic array (LIFO order). Calling with NULL performs initialization/guarding behavior.
+
+- static inline int mulle_atexit( void (*f)(void))
+  - Portable wrapper: on Windows+dynamic builds it resolves `_mulle_atexit` via `mulle_dlsym_exe` and calls it; otherwise it calls `_mulle_atexit` directly.
+
+#### Lifecycle and execution
+- A constructor calls `_mulle_atexit(0)` to ensure initialization occurs early.
+- If not relying on the system `atexit`, a destructor calls `run_exit_callbacks()` to execute registered callbacks on unload.
+- Registration order is LIFO (last registered, first executed). Tests show registering `a` then `b` prints `b` then `a`.
 
 ## 4. Performance Characteristics
 
-- **Registration:** Registering a handler is a fast operation. It involves acquiring a mutex, allocating a small node for the handler, and adding it to a linked list. The overhead is minimal.
-- **Execution:** Execution time is proportional to the number of registered handlers.
-- **Memory Usage:** Memory usage is minimal, growing linearly with the number of registered handlers. Each handler requires a small amount of memory for its node in the registry.
-- **Thread-Safety:** The library is fully thread-safe.
+- Registration: amortized O(1). The internal array grows by doubling; initial capacity is 32.
+- Execution: O(n) to run all callbacks.
+- Memory: proportional to number of registered callbacks, with occasional reallocations on growth.
+- Thread-safety: uses `mulle_thread_mutex_t` for protection and `mulle_thread_once_do` for one-time init.
 
 ## 5. AI Usage Recommendations & Patterns
 
-- **Linking:** It is **critical** that `mulle-atexit` is statically linked into the main executable. Furthermore, linker flags must be used to ensure the entire library is included and its symbols are exported, preventing it from being optimized away.
-  - **Linux:** `-Wl,--whole-archive -lmulle-atexit -Wl,--no-whole-archive -Wl,--export-dynamic`
-  - **macOS:** `-Wl,-force_load,path/to/libmulle-atexit.a`
-- **Main Executable Setup:** The main executable should register `mulle_atexit_execute` with the *standard* `atexit` to ensure all registered `mulle-atexit` handlers are called on normal process termination.
-  ```c
-  #include <mulle-atexit/mulle-atexit.h>
-  #include <stdlib.h>
-
-  int main(void) {
-      atexit(mulle_atexit_execute);
-      // ... rest of main ...
-  }
-  ```
-- **Shared Library Usage:** Shared libraries should link against `mulle-atexit` and use `mulle_atexit(my_cleanup_function)` in their constructor or initialization functions. They should **not** call `mulle_atexit_execute` themselves if a global instance is present.
+- Best practices:
+  - Use `mulle_atexit( fn);` for registering callbacks.
+  - Statically link the library into the executable. Linux linker flags: `-Wl,--export-dynamic -Wl,--whole-archive`; macOS: `-force_load <library>`.
+  - Use the public `mulle_atexit` wrapper; avoid direct dynamic symbol manipulation unless required on Windows.
+- Common pitfalls:
+  - Callbacks execute LIFO — do not expect FIFO behavior.
+  - If the library is not linked in the recommended way, callbacks can be optimized away or not run.
+- Idiomatic pattern: register small cleanup functions and let the executable arrange final invocation (e.g., register `mulle_atexit_execute` with the system `atexit` if desired).
 
 ## 6. Integration Examples
 
-### Example 1: Registering and Executing Handlers
+### Example 1: Creating and registering two callbacks (from tests)
 
-This example shows the basic usage pattern within a main executable. It registers two handlers and ensures they are called at exit.
-*Source: `test/10_atexit/atexit.c`*
 ```c
 #include <mulle-atexit/mulle-atexit.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-static void final_cleanup(void)
+static void
+a( void )
 {
-    printf("Final cleanup function called.\n");
+   printf( "a\n" );
+   fflush( stdout );
 }
 
-static void resource_cleanup(void *resource)
+static void
+b( void )
 {
-    printf("Cleaning up resource: %s\n", (char *)resource);
+   printf( "b\n" );
+   fflush( stdout );
 }
 
-// This function simulates the setup in a main executable.
-void setup_main_exit_handler(void)
+int
+main( void )
 {
-    // This ensures all mulle_atexit handlers are called when main exits.
-    if (atexit(mulle_atexit_execute))
-    {
-        fprintf(stderr, "Failed to register atexit handler\n");
-        abort();
-    }
+   mulle_atexit( a );
+   mulle_atexit( b );
+
+   return( 0 );
+}
+```
+
+- Expected output on exit: `b` then `a` (LIFO execution).
+
+### Example 2: Minimal registration in library code
+
+```c
+#include <mulle-atexit/mulle-atexit.h>
+
+static void
+cleanup( void )
+{
+   /* release resources owned by the library */
 }
 
-int main(int argc, char *argv[])
+void
+library_init( void )
 {
-    setup_main_exit_handler();
-
-    printf("Program starting.\n");
-
-    // Register a handler with a parameter.
-    mulle_atexit_param(resource_cleanup, "My Resource");
-
-    // Register a simple handler.
-    mulle_atexit(final_cleanup);
-
-    printf("Program finishing. Handlers will be called by the system atexit.\n");
-
-    // When main returns, the standard atexit mechanism will call
-    // mulle_atexit_execute, which in turn calls our two handlers
-    // in reverse order of registration.
-    return 0;
+   /* called when library is initialized */
+   mulle_atexit( cleanup );
 }
+```
 
-/*
-Expected Output:
-Program starting.
-Program finishing. Handlers will be called by the system atexit.
-Final cleanup function called.
-Cleaning up resource: My Resource
-*/
+## 7. Dependencies
+
+- Relies on mulle-thread primitives (mutex and once) for thread-safety.
+- Intended to be integrated and built using mulle-sde.
+
