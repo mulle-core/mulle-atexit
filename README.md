@@ -14,6 +14,11 @@ This reimplements `atexit` as it should be, just under a different name.
 
 
 
+
+## Documentation & Guides
+
+* [API Summary](asset/dox/api/toc)
+
 You must **statically** link the mulle-atexit library with your executable.
 Ensure that global symbols are exported and that the whole library is linked
 to the executable and not optimized away by the linker.
