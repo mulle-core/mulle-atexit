@@ -6,7 +6,7 @@
    "license" : "UNLICENSED",
    "repo" : "mulle-core/mulle-atexit",
    "src" : [
-      "asset/dox/TOC.md",
+      "asset/dox/api/toc/index.md",
       "src/generic/include-private.h",
       "src/generic/include.h",
       "src/mulle-atexit.c",
