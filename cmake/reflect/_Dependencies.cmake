@@ -72,16 +72,15 @@ else()
          endif()
       endif()
       message( STATUS "MULLE__THREAD_LIBRARY is ${MULLE__THREAD_LIBRARY}")
-      #
-      # The order looks ascending, but due to the way this file is read
-      # it ends up being descending, which is what we need.
-      #
-      if( MULLE__THREAD_LIBRARY)
+   endif()
+   if( MULLE__THREAD_LIBRARY)
          #
          # Add MULLE__THREAD_LIBRARY to DEPENDENCY_LIBRARIES list.
          # Disable with: `mulle-sourcetree mark mulle-thread no-cmake-add`
          #
-         list( APPEND DEPENDENCY_LIBRARIES ${MULLE__THREAD_LIBRARY})
+         if( NOT ${MULLE__THREAD_LIBRARY} IN_LIST DEPENDENCY_LIBRARIES)
+            list( APPEND DEPENDENCY_LIBRARIES ${MULLE__THREAD_LIBRARY})
+         endif()
          #
          # Inherit information from dependency.
          # Encompasses: no-cmake-searchpath,no-cmake-dependency,no-cmake-loader
@@ -124,9 +123,9 @@ else()
                message( STATUS "${_TMP_MULLE__THREAD_DIR} not found")
             endif()
          endforeach()
-      else()
-         # Disable with: `mulle-sourcetree mark mulle-thread no-require-link`
-         message( SEND_ERROR "MULLE__THREAD_LIBRARY was not found in ${MULLE_PREFERRED_LIBRARY_PREFIX}mulle-core${CMAKE_DEBUG_POSTFIX}${MULLE_PREFERRED_LIBRARY_SUFFIX}
+   else()
+      # Disable with: `mulle-sourcetree mark mulle-thread no-require-link`
+      message( SEND_ERROR "MULLE__THREAD_LIBRARY was not found in ${MULLE_PREFERRED_LIBRARY_PREFIX}mulle-core${CMAKE_DEBUG_POSTFIX}${MULLE_PREFERRED_LIBRARY_SUFFIX}
 ${MULLE_PREFERRED_LIBRARY_PREFIX}mulle-core${MULLE_PREFERRED_LIBRARY_SUFFIX}
 ${MULLE_FALLBACK_LIBRARY_PREFIX}mulle-core${CMAKE_DEBUG_POSTFIX}${MULLE_FALLBACK_LIBRARY_SUFFIX}
 ${MULLE_FALLBACK_LIBRARY_PREFIX}mulle-core${MULLE_FALLBACK_LIBRARY_SUFFIX}
@@ -136,6 +135,5 @@ ${MULLE_PREFERRED_LIBRARY_PREFIX}mulle-thread${MULLE_PREFERRED_LIBRARY_SUFFIX}
 ${MULLE_FALLBACK_LIBRARY_PREFIX}mulle-thread${CMAKE_DEBUG_POSTFIX}${MULLE_FALLBACK_LIBRARY_SUFFIX}
 ${MULLE_FALLBACK_LIBRARY_PREFIX}mulle-thread${MULLE_FALLBACK_LIBRARY_SUFFIX}
 mulle-thread")
-      endif()
    endif()
 endif()
