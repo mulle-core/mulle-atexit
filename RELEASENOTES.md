@@ -2,6 +2,7 @@
 
 
 
+
 * Windows DllMain is now compiled under the correct `MULLE__CORE__ALL__LOAD_BUILD` guard
 
 ## 0.2.0
