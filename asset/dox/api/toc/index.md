@@ -115,4 +115,3 @@ library_init( void )
 
 - Relies on mulle-thread primitives (mutex and once) for thread-safety.
 - Intended to be integrated and built using mulle-sde.
-
