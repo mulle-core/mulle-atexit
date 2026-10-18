@@ -3,8 +3,9 @@
    {
       description="👼 Compatibility library to fix atexit";
       domain="github";
+      language="c";
+      dialect="c";
       name="mulle-atexit";
-      version="0.2.1";
       user="mulle-core";
       repo="mulle-atexit";
       homepage="https://github.com/mulle-core/mulle-atexit";

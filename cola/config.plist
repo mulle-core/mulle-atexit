@@ -1,0 +1,9 @@
+{
+   config = {
+   showButtons = YES;
+   showCoverage = NO;
+   showCodacy = NO;
+   showStd = "C11";
+   showApis = "ansi";
+   }
+}
