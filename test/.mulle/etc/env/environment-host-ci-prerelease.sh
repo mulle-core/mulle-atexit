@@ -1,19 +1,19 @@
 #
-# mulle-thread nodetype: ${MULLE__THREAD_NODETYPE:-tar}
+# mulle-atexit nodetype: ${MULLE__ATEXIT_NODETYPE:-tar}
 #
-export MULLE__THREAD_NODETYPE="git"
+export MULLE__ATEXIT_NODETYPE="git"
 
 
 #
-# mulle-thread url: ${MULLE__THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_TAG}.tar.gz}
+# mulle-atexit url: ${MULLE__ATEXIT_URL:-https://github.com/mulle-concurrent/mulle-atexit/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE__THREAD_URL="https://github.com/mulle-concurrent/mulle-thread.git"
+export MULLE__ATEXIT_URL="https://github.com/mulle-concurrent/mulle-atexit.git"
 
 
 #
-# mulle-thread branch: ${MULLE__THREAD_BRANCH}
+# mulle-atexit branch: ${MULLE__ATEXIT_BRANCH}
 #
-export MULLE__THREAD_BRANCH="prerelease"
+export MULLE__ATEXIT_BRANCH="prerelease"
 
 
 #
@@ -35,20 +35,20 @@ export MULLE__C11_BRANCH="prerelease"
 
 
 #
-# mulle-atexit nodetype: ${MULLE__ATEXIT_NODETYPE:-tar}
+# mulle-thread nodetype: ${MULLE__THREAD_NODETYPE:-tar}
 #
-export MULLE__ATEXIT_NODETYPE="git"
+export MULLE__THREAD_NODETYPE="git"
 
 
 #
-# mulle-atexit url: ${MULLE__ATEXIT_URL:-https://github.com/mulle-concurrent/mulle-atexit/archive/${MULLE_TAG}.tar.gz}
+# mulle-thread url: ${MULLE__THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE__ATEXIT_URL="https://github.com/mulle-concurrent/mulle-atexit.git"
+export MULLE__THREAD_URL="https://github.com/mulle-concurrent/mulle-thread.git"
 
 
 #
-# mulle-atexit branch: ${MULLE__ATEXIT_BRANCH}
+# mulle-thread branch: ${MULLE__THREAD_BRANCH}
 #
-export MULLE__ATEXIT_BRANCH="prerelease"
+export MULLE__THREAD_BRANCH="prerelease"
 
 
